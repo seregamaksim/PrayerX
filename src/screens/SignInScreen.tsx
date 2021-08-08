@@ -2,11 +2,11 @@ import React from "react";
 import { Text, View } from "react-native";
 
 
-export default function AuthorizationScreen() {
+export default function SignInScreen() {
 
     return (
         <View>
-            <Text>Authorization screen</Text>
+            <Text>SignInScreen screen</Text>
         </View>
     )
 }

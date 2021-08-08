@@ -16,8 +16,16 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import AuthorizationScreen from './screens/AuthorizationScreen';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import SignUpScreen from './screens/SignUpScreen';
+import SignInScreen from './screens/SignInScreen';
+import { http } from './services/http';
+import { useEffect } from 'react';
+
+const Stack = createNativeStackNavigator();
 // const Section: React.FC<{
 //   title: string;
 // }> = ({children, title}) => {
@@ -47,43 +55,54 @@ import AuthorizationScreen from './screens/AuthorizationScreen';
 // };
 
 const App = () => {
+  useEffect(() => {
+    http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => {
+      console.log(res.config);
+    });
+  }, []);
   // const isDarkMode = useColorScheme() === 'dark';
 
   // const backgroundStyle = {
   //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   // };
-  return <AuthorizationScreen />;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="SignIn" component={SignInScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+  // <AuthorizationScreen />;
   // return (
-    // <SafeAreaView style={backgroundStyle}>
-    //   <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-    //   <ScrollView
-    //     contentInsetAdjustmentBehavior="automatic"
-    //     style={backgroundStyle}>
-    //     <Header />
-    //     <View
-    //       style={{
-    //         backgroundColor: isDarkMode ? Colors.black : Colors.white,
-    //       }}>
-    //       <Section title="Step One">
-    //         Edit <Text style={styles.highlight}>App.js</Text> to change this
-    //         screen and then come back to see your edits.
-    //       </Section>
-    //       <Section title="See Your Changes">
-    //         <ReloadInstructions />
-    //       </Section>
-    //       <Section title="Debug">
-    //         <DebugInstructions />
-    //       </Section>
-    //       <Section title="Learn More">
-    //         Read the docs to discover what to do next:
-    //       </Section>
-    //       <LearnMoreLinks />
-    //     </View>
-    //   </ScrollView>
-    // </SafeAreaView>
+  // <SafeAreaView style={backgroundStyle}>
+  //   <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+  //   <ScrollView
+  //     contentInsetAdjustmentBehavior="automatic"
+  //     style={backgroundStyle}>
+  //     <Header />
+  //     <View
+  //       style={{
+  //         backgroundColor: isDarkMode ? Colors.black : Colors.white,
+  //       }}>
+  //       <Section title="Step One">
+  //         Edit <Text style={styles.highlight}>App.js</Text> to change this
+  //         screen and then come back to see your edits.
+  //       </Section>
+  //       <Section title="See Your Changes">
+  //         <ReloadInstructions />
+  //       </Section>
+  //       <Section title="Debug">
+  //         <DebugInstructions />
+  //       </Section>
+  //       <Section title="Learn More">
+  //         Read the docs to discover what to do next:
+  //       </Section>
+  //       <LearnMoreLinks />
+  //     </View>
+  //   </ScrollView>
+  // </SafeAreaView>
   // );
 };
-
-
 
 export default App;
