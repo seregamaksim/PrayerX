@@ -1,1 +1,1 @@
-export const API_URL = ' https://prayer.herokuapp.com/api/';
+export const API_URL = 'https://prayer.herokuapp.com/';

@@ -8,6 +8,8 @@ export const authMiddleware =
   () =>
   (next: Dispatch) =>
   (action: AnyAction): AnyAction => {
+    console.log('action', action);
+
     if (action.type === actions.auth.signIn.type) {
       action.payload?.token &&
         http.setAuthorizationHeader(action.payload.token);
@@ -16,9 +18,10 @@ export const authMiddleware =
     if (action.type === REHYDRATE) {
       action.payload?.auth?.token &&
         http.setAuthorizationHeader(action.payload.auth.token);
+      console.log('REHYDRATE', http.axios.defaults);
     }
 
-    if (action.type === actions.auth.signOut.fulfilled.type) {
+    if (action.type === actions.auth.signOut.type) {
       http.unsetAuthorizationHeader();
     }
 

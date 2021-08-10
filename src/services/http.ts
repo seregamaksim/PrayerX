@@ -1,5 +1,5 @@
 import { API_URL } from '../constants';
-import Axios, { AxiosError, AxiosInstance } from 'axios';
+import axios, { AxiosError, AxiosInstance } from 'axios';
 import { store } from '../store/store';
 import { actions } from '../store/ducks';
 
@@ -57,7 +57,7 @@ export class Http {
 }
 
 export const http = new Http(
-  Axios.create({
+  axios.create({
     baseURL: API_URL,
     timeout: 60000,
   }),

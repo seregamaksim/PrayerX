@@ -11,5 +11,5 @@ export const actions = {
 };
 
 export const selectors = {
-  // auth: auth.selectors
+  auth: auth.selectors,
 };

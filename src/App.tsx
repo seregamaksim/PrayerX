@@ -1,108 +1,17 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import SignUpScreen from './screens/SignUpScreen';
-import SignInScreen from './screens/SignInScreen';
-import { http } from './services/http';
-import { useEffect } from 'react';
-
-const Stack = createNativeStackNavigator();
-// const Section: React.FC<{
-//   title: string;
-// }> = ({children, title}) => {
-//   const isDarkMode = useColorScheme() === 'dark';
-//   return (
-//     <View style={styles.sectionContainer}>
-//       <Text
-//         style={[
-//           styles.sectionTitle,
-//           {
-//             color: isDarkMode ? Colors.white : Colors.black,
-//           },
-//         ]}>
-//         {title}
-//       </Text>
-//       <Text
-//         style={[
-//           styles.sectionDescription,
-//           {
-//             color: isDarkMode ? Colors.light : Colors.dark,
-//           },
-//         ]}>
-//         {children}
-//       </Text>
-//     </View>
-//   );
-// };
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import StackApp from './StackApp';
+import { persistor, store } from './store/store';
 
 const App = () => {
-  useEffect(() => {
-    http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => {
-      console.log(res.config);
-    });
-  }, []);
-  // const isDarkMode = useColorScheme() === 'dark';
-
-  // const backgroundStyle = {
-  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  // };
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="SignIn" component={SignInScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <StackApp />
+      </PersistGate>
+    </Provider>
   );
-  // <AuthorizationScreen />;
-  // return (
-  // <SafeAreaView style={backgroundStyle}>
-  //   <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-  //   <ScrollView
-  //     contentInsetAdjustmentBehavior="automatic"
-  //     style={backgroundStyle}>
-  //     <Header />
-  //     <View
-  //       style={{
-  //         backgroundColor: isDarkMode ? Colors.black : Colors.white,
-  //       }}>
-  //       <Section title="Step One">
-  //         Edit <Text style={styles.highlight}>App.js</Text> to change this
-  //         screen and then come back to see your edits.
-  //       </Section>
-  //       <Section title="See Your Changes">
-  //         <ReloadInstructions />
-  //       </Section>
-  //       <Section title="Debug">
-  //         <DebugInstructions />
-  //       </Section>
-  //       <Section title="Learn More">
-  //         Read the docs to discover what to do next:
-  //       </Section>
-  //       <LearnMoreLinks />
-  //     </View>
-  //   </ScrollView>
-  // </SafeAreaView>
-  // );
 };
 
 export default App;
