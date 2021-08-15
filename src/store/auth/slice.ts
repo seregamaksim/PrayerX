@@ -16,17 +16,22 @@ const authSlice = createSlice({
   initialState,
   name: 'auth',
   reducers: {
-    signIn(state, { payload }: PayloadAction<IauthSlice>) {},
+    signIn(state, { payload }: PayloadAction<IauthSlice>) {
+      state.token = payload.token;
+      state.name = payload.name;
+      state.email = payload.email;
+    },
     signOut(state) {
       state.token = '';
       state.name = '';
       state.email = '';
     },
-    signUp(state, { payload }: PayloadAction<IauthSlice>) {
+    signUp(state, { payload }: PayloadAction<any>) {
       state.token = payload.token;
       state.name = payload.name;
       state.email = payload.email;
     },
+    signUpRequest() {},
   },
 });
 

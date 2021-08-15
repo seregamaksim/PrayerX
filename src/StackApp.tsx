@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignUpScreen from './screens/SignUpScreen';
+import AuthScreen from './screens/AuthScreen';
 import SignInScreen from './screens/SignInScreen';
 import { useSelector } from 'react-redux';
 import { selectors } from './store/ducks';
@@ -22,7 +22,11 @@ const StackApp = () => {
           </>
         ) : (
           <>
-            <Stack.Screen name="Registration" component={SignUpScreen} />
+            <Stack.Screen
+              name="Registration"
+              component={AuthScreen}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen name="Login" component={SignInScreen} />
           </>
         )}

@@ -18,7 +18,7 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(sagaMiddleware, authMiddleware),
+    }).concat(authMiddleware, sagaMiddleware),
 });
 sagaMiddleware.run(rootSaga);
 export let persistor = persistStore(store);
