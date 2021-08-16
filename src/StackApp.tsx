@@ -11,14 +11,13 @@ const Stack = createNativeStackNavigator();
 
 const StackApp = () => {
   const isToken = useSelector(selectors.auth.selectToken);
-  console.log('isToken', isToken);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {isToken.length ? (
+        {isToken.length > 0 ? (
           <>
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="My desk" component={Home} />
           </>
         ) : (
           <>

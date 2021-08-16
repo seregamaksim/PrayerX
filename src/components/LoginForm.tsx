@@ -10,10 +10,8 @@ import { actions } from '../store/ducks';
 export default function LoginForm() {
   const dispatch = useDispatch();
 
-  async function onSubmit(values: any) {
-    let request = await http.post('/auth/sign-in/', values);
-    console.log('request', request.data);
-    dispatch(actions.auth.signUp(request.data));
+  function onSubmit(values: any) {
+    dispatch({ type: actions.auth.signInRequest.type, values });
   }
 
   return (

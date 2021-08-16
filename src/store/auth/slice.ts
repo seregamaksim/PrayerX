@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface IauthSlice {
+interface IAuthSlice {
   token: string;
   name: string;
   email: string;
 }
 
-const initialState: any = {
+const initialState: IAuthSlice = {
   token: '',
   name: '',
   email: '',
@@ -16,7 +16,7 @@ const authSlice = createSlice({
   initialState,
   name: 'auth',
   reducers: {
-    signIn(state, { payload }: PayloadAction<IauthSlice>) {
+    signIn(state, { payload }: PayloadAction<IAuthSlice>) {
       state.token = payload.token;
       state.name = payload.name;
       state.email = payload.email;
@@ -26,12 +26,13 @@ const authSlice = createSlice({
       state.name = '';
       state.email = '';
     },
-    signUp(state, { payload }: PayloadAction<any>) {
+    signUp(state, { payload }: PayloadAction<IAuthSlice>) {
       state.token = payload.token;
       state.name = payload.name;
       state.email = payload.email;
     },
     signUpRequest() {},
+    signInRequest() {},
   },
 });
 

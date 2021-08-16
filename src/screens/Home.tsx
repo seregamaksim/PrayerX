@@ -1,16 +1,20 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { Button, Text, View } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { actions } from '../store/ducks';
+import { useDispatch, useSelector } from 'react-redux';
+import { http } from '../services/http';
+import { actions, selectors } from '../store/ducks';
 
-export default function Home() {
+export default function Home({ navigation }: any) {
   const dispatch = useDispatch();
-  return (
-    <View>
-      <Text>Home</Text>
-      <Button onPress={() => dispatch(actions.auth.signOut())} title="Click">
-        {' '}
-      </Button>
-    </View>
-  );
+  const columns = useSelector(selectors.columns.selectColumns);
+
+  useEffect(() => {
+    dispatch({ type: actions.columns.getColumns.type });
+  }, [dispatch]);
+
+  return columns.map(item => {
+    return <Text key={item.id}>{item.title}</Text>;
+  });
 }
