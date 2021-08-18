@@ -1,20 +1,11 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Button, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { Button, ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { http } from '../services/http';
+import styled from 'styled-components/native';
+import ColumnsList from '../components/ColumnsList';
 import { actions, selectors } from '../store/ducks';
 
-export default function Home({ navigation }: any) {
-  const dispatch = useDispatch();
-  const columns = useSelector(selectors.columns.selectColumns);
-
-  useEffect(() => {
-    dispatch({ type: actions.columns.getColumns.type });
-  }, [dispatch]);
-
-  return columns.map(item => {
-    return <Text key={item.id}>{item.title}</Text>;
-  });
+export default function Home() {
+  return <ColumnsList />;
 }

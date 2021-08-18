@@ -6,11 +6,12 @@ import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { http } from '../services/http';
 import { actions } from '../store/ducks';
+import { IAuth } from '../types';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
 
-  function onSubmit(values: any) {
+  function onSubmit(values: IAuth) {
     dispatch({ type: actions.auth.signInRequest.type, values });
   }
 

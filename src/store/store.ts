@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { applyMiddleware, configureStore } from '@reduxjs/toolkit';
 import { authMiddleware } from './middlewares/authMiddleware';
 import { reducer } from './ducks';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -13,6 +13,7 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 const persistedReducer = persistReducer(persistConfig, reducer);
+
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>

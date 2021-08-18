@@ -4,11 +4,12 @@ import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { useDispatch } from 'react-redux';
 import { actions } from '../store/ducks';
+import { IRegistrationVal } from '../types';
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
 
-  function onSubmit(values: any) {
+  function onSubmit(values: IRegistrationVal) {
     dispatch({ type: actions.auth.signUpRequest.type, values });
   }
 

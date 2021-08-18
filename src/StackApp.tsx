@@ -6,6 +6,7 @@ import SignInScreen from './screens/SignInScreen';
 import { useSelector } from 'react-redux';
 import { selectors } from './store/ducks';
 import Home from './screens/Home';
+import { Button, Image, Pressable } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,9 +16,25 @@ const StackApp = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {isToken.length > 0 ? (
+        {isToken ? (
           <>
-            <Stack.Screen name="My desk" component={Home} />
+            <Stack.Screen
+              name="My desk"
+              component={Home}
+              options={{
+                headerRight: () => (
+                  <Pressable onPress={() => console.log('This is a button!')}>
+                    <Image
+                      style={{
+                        width: 20,
+                        height: 20,
+                      }}
+                      source={require('../static/images/plus.png')}
+                    />
+                  </Pressable>
+                ),
+              }}
+            />
           </>
         ) : (
           <>
