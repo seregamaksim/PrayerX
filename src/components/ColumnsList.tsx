@@ -21,12 +21,7 @@ export default function ColumnsList() {
     return <ColumnItem data={item} />;
   };
   return (
-    <FlatList
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-        padding: 15,
-      }}
+    <StyledHomeView
       data={columns}
       renderItem={renderItem}
       keyExtractor={item => item.id.toString()}
@@ -38,4 +33,5 @@ const StyledHomeView = styled.FlatList`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-`;
+  padding: 15px;
+` as unknown as typeof FlatList;

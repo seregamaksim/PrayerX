@@ -1,17 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IColumn } from '../../types';
 
-const initialState: any[] = [];
+const initialState: IColumn[] = [];
 
 const columnsSlice = createSlice({
   initialState,
   name: 'columns',
   reducers: {
-    setColumns(state, { payload }: PayloadAction<any>) {
-      console.log('payload', payload);
-
+    setColumns(state, { payload }: PayloadAction<IColumn[]>) {
       return payload;
     },
     getColumns() {},
+    addColumn(state, { payload }: PayloadAction<IColumn>) {
+      state.push(payload);
+    },
+    addColumnRequest() {},
   },
 });
 

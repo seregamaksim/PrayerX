@@ -1,40 +1,50 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthScreen from './screens/AuthScreen';
 import SignInScreen from './screens/SignInScreen';
 import { useSelector } from 'react-redux';
 import { selectors } from './store/ducks';
-import Home from './screens/Home';
+import HomeScreen from './screens/HomeScreen';
 import { Button, Image, Pressable } from 'react-native';
+import AddColumnScreen from './screens/AddColumnScreen';
+import ColumnScreen from './screens/ColumnScreen';
 
 const Stack = createNativeStackNavigator();
 
 const StackApp = () => {
   const isToken = useSelector(selectors.auth.selectToken);
-
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerTitleStyle: {
+            fontWeight: '600',
+            fontSize: 17,
+            color: '#514D47',
+          },
+        }}>
         {isToken ? (
           <>
-            <Stack.Screen
-              name="My desk"
-              component={Home}
-              options={{
-                headerRight: () => (
-                  <Pressable onPress={() => console.log('This is a button!')}>
-                    <Image
-                      style={{
-                        width: 20,
-                        height: 20,
-                      }}
-                      source={require('../static/images/plus.png')}
-                    />
-                  </Pressable>
-                ),
-              }}
-            />
+            <Stack.Group>
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{ title: 'My desk' }}
+              />
+              <Stack.Screen
+                name="Column"
+                component={ColumnScreen}
+                options={{ title: 'My Columns' }}
+              />
+            </Stack.Group>
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+              <Stack.Screen
+                name="AddColumnModal"
+                component={AddColumnScreen}
+                options={{ title: 'Add column' }}
+              />
+            </Stack.Group>
           </>
         ) : (
           <>

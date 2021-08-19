@@ -1,12 +1,12 @@
 import { put, takeLatest } from 'redux-saga/effects';
-import { http } from '../../../services/http';
+import { http } from '../../services/http';
 import {
   IAuth,
   ILoginResponse,
   IRegistrationResponse,
   IRegistrationVal,
-} from '../../../types';
-import { actions } from '../../ducks';
+} from '../../types';
+import { actions } from '../ducks';
 
 export interface ILoginAction {
   type: typeof actions.auth.signInRequest.type;

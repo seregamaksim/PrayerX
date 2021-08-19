@@ -1,3 +1,5 @@
+import { StackNavigationProp } from '@react-navigation/stack';
+
 export interface IAuthSlice {
   token: string;
   name: string;
@@ -27,3 +29,13 @@ export interface IColumn {
   title: string;
   description: string;
 }
+
+export interface IPostColumn {
+  title: string;
+  description: string;
+}
+export type RootStackParamList = {
+  Home: undefined;
+  AddColumnModal: undefined;
+  Column: { columnId: number };
+};
