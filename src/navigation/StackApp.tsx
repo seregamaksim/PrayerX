@@ -1,14 +1,15 @@
 import React from 'react';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AuthScreen from './screens/AuthScreen';
-import SignInScreen from './screens/SignInScreen';
+import AuthScreen from '../screens/AuthScreen';
+import SignInScreen from '../screens/SignInScreen';
 import { useSelector } from 'react-redux';
-import { selectors } from './store/ducks';
-import HomeScreen from './screens/HomeScreen';
+import { selectors } from '../store/ducks';
+import HomeScreen from '../screens/HomeScreen';
 import { Button, Image, Pressable } from 'react-native';
-import AddColumnScreen from './screens/AddColumnScreen';
-import ColumnScreen from './screens/ColumnScreen';
+import AddColumnScreen from '../screens/AddColumnScreen';
+import ColumnScreen from '../screens/ColumnScreen';
+import ColumnSettingsScreen from '../screens/ColumnSettingsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,11 +39,16 @@ const StackApp = () => {
                 options={{ title: 'My Columns' }}
               />
             </Stack.Group>
-            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Group>
               <Stack.Screen
                 name="AddColumnModal"
                 component={AddColumnScreen}
-                options={{ title: 'Add column' }}
+                options={{ title: 'Add column', presentation: 'modal' }}
+              />
+              <Stack.Screen
+                name="SettingsColumn"
+                component={ColumnSettingsScreen}
+                options={{ title: 'Settings column' }}
               />
             </Stack.Group>
           </>

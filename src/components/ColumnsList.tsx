@@ -4,7 +4,7 @@ import { FlatList, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
 import { actions, selectors } from '../store/ducks';
-import { IColumn } from '../types';
+import { IColumn } from '../store/columns/types';
 import ColumnItem from './ColumnItem';
 
 export default function ColumnsList() {
@@ -21,6 +21,7 @@ export default function ColumnsList() {
     return <ColumnItem data={item} />;
   };
   return (
+    // <Text>sa</Text>
     <StyledHomeView
       data={columns}
       renderItem={renderItem}

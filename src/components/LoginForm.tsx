@@ -3,7 +3,7 @@ import { Form } from 'react-final-form';
 import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { actions } from '../store/ducks';
-import { IAuth } from '../types';
+import { IAuth } from '../store/auth/types';
 import FormInput from '../ui/FormInput';
 import FormSendBtn from '../ui/FormSendBtn';
 
@@ -11,7 +11,7 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   function onSubmit(values: IAuth): void {
-    dispatch({ type: actions.auth.signInRequest.type, values });
+    dispatch({ type: actions.auth.signIn.type, values });
   }
 
   return (

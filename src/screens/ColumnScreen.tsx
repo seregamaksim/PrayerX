@@ -1,12 +1,35 @@
 import React, { useLayoutEffect } from 'react';
-import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  TouchableOpacity,
+  Pressable,
+  Image,
+} from 'react-native';
 import { useSelector } from 'react-redux';
 import { selectors } from '../store/ducks';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import PrayersScreen from './PrayersScreen';
 import SubscribedScreen from './SubscribedScreen';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../types';
+import GearIcon from '../ui/icons/GearIcon';
+
+type ColumnScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Column'
+>;
+
+type ColumnScreenRouteProp = RouteProp<RootStackParamList, 'Column'>;
+type Props = {
+  navigation: ColumnScreenNavigationProp;
+  route: ColumnScreenRouteProp;
+};
 
 const Tab = createMaterialTopTabNavigator();
+
 const SubscribedTab = (props: { focused: boolean; color: string }) => {
   console.log('props', props);
 
@@ -34,12 +57,23 @@ const SubscribedTab = (props: { focused: boolean; color: string }) => {
   // </View>
 };
 
-export default function ColumnScreen({ navigation, route }: any) {
+export default function ColumnScreen({ navigation, route }: Props) {
   const { columnId } = route.params;
   const dataColumn = useSelector(selectors.columns.selectColumnById(columnId));
+  function columnRightBtn() {
+    return (
+      <Pressable
+        onPress={() =>
+          navigation.navigate('SettingsColumn', { columnId: columnId })
+        }>
+        <GearIcon />
+      </Pressable>
+    );
+  }
   useLayoutEffect(() => {
     navigation.setOptions({
       title: dataColumn.title,
+      headerRight: columnRightBtn,
     });
   }, [navigation, dataColumn]);
 

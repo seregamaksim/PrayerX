@@ -1,7 +1,7 @@
 import { RootState } from '../store';
 import { createSelector } from 'reselect';
 
-export const selectColumns = (state: RootState) => state.columns;
+export const selectColumns = (state: RootState) => state.columns.data;
 
 export const selectColumnById = (columnId: number) =>
   createSelector(

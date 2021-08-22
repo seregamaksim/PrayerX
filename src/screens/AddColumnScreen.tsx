@@ -6,7 +6,8 @@ import { Text } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { actions } from '../store/ducks';
-import { IPostColumn, RootStackParamList } from '../types';
+import { RootStackParamList } from '../types';
+import { IPostColumn } from '../store/columns/types';
 import FormInput from '../ui/FormInput';
 import FormSendBtn from '../ui/FormSendBtn';
 
@@ -23,7 +24,9 @@ export default function AddColumnScreen({ navigation }: Props) {
   const dispatch = useDispatch();
 
   function onSubmit(values: IPostColumn): void {
-    dispatch({ type: actions.columns.addColumnRequest.type, values });
+    dispatch({ type: actions.columns.addColumn.type, values });
+
+    navigation.goBack();
   }
   return (
     <Container>
@@ -36,10 +39,10 @@ export default function AddColumnScreen({ navigation }: Props) {
             <FormSendBtn handleSubmit={handleSubmit} text="Add column" />
           </View>
         )}></Form>
-      {/* <Button
+      <Button
         onPress={() => dispatch({ type: actions.auth.signOut })}
         title="Close"
-      /> */}
+      />
     </Container>
   );
 }

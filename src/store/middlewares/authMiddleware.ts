@@ -8,7 +8,7 @@ export const authMiddleware =
   () =>
   (next: Dispatch) =>
   (action: AnyAction): AnyAction => {
-    if (action.type === actions.auth.signIn.type) {
+    if (action.type === actions.auth.signInSuccess.type) {
       action.payload?.token &&
         http.setAuthorizationHeader(action.payload.token);
     }

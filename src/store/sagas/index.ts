@@ -1,6 +1,11 @@
 import { all } from 'redux-saga/effects';
-import { watchRegistrationSaga, watchLoginSaga } from './authSaga';
-import { watchFetchColumns, watchPostColumn } from './columnsSaga';
+import { watchRegistrationSaga, watchLoginSaga } from '../auth/sagas';
+import {
+  watchFetchColumns,
+  watchPostColumn,
+  watchDeleteColumn,
+  watchUpdateColumn,
+} from '../columns/sagas';
 
 export default function* rootSaga() {
   yield all([
@@ -8,5 +13,7 @@ export default function* rootSaga() {
     watchLoginSaga(),
     watchFetchColumns(),
     watchPostColumn(),
+    watchDeleteColumn(),
+    watchUpdateColumn(),
   ]);
 }

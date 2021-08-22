@@ -3,7 +3,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import styled from 'styled-components/native';
-import { IColumn, RootStackParamList } from '../types';
+import { RootStackParamList } from '../types';
+import { IColumn } from '../store/columns/types';
 
 type ColumnScreenNavigationProp = StackNavigationProp<
   RootStackParamList,

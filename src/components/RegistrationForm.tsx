@@ -3,7 +3,7 @@ import { Form } from 'react-final-form';
 import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { actions } from '../store/ducks';
-import { IRegistrationVal } from '../types';
+import { IRegistrationVal } from '../store/auth/types';
 import FormInput from '../ui/FormInput';
 import FormSendBtn from '../ui/FormSendBtn';
 
@@ -11,7 +11,7 @@ export default function RegistrationForm() {
   const dispatch = useDispatch();
 
   function onSubmit(values: IRegistrationVal) {
-    dispatch({ type: actions.auth.signUpRequest.type, values });
+    dispatch({ type: actions.auth.signUp.type, values });
   }
 
   return (
