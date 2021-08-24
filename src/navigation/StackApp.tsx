@@ -36,7 +36,7 @@ const StackApp = () => {
               <Stack.Screen
                 name="Column"
                 component={ColumnScreen}
-                options={{ title: 'My Columns' }}
+                options={{ title: 'My Columns', headerShadowVisible: false }}
               />
             </Stack.Group>
             <Stack.Group>

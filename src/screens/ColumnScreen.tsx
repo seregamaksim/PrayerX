@@ -89,6 +89,7 @@ export default function ColumnScreen({ navigation, route }: Props) {
         name="Feed"
         component={PrayersScreen}
         options={{ tabBarLabel: 'My prayers' }}
+        initialParams={{ columnId: columnId }}
       />
       <Tab.Screen
         name="Notifications"
@@ -96,6 +97,7 @@ export default function ColumnScreen({ navigation, route }: Props) {
         options={{
           tabBarLabel: 'Subscribed',
         }}
+        initialParams={{ columnId: columnId }}
       />
     </Tab.Navigator>
   );

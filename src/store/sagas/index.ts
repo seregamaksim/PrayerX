@@ -6,6 +6,7 @@ import {
   watchDeleteColumn,
   watchUpdateColumn,
 } from '../columns/sagas';
+import { watchFetchPrayers } from '../prayers/sagas';
 
 export default function* rootSaga() {
   yield all([
@@ -15,5 +16,6 @@ export default function* rootSaga() {
     watchPostColumn(),
     watchDeleteColumn(),
     watchUpdateColumn(),
+    watchFetchPrayers(),
   ]);
 }
