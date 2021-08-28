@@ -84,6 +84,7 @@ export default function ColumnScreen({ navigation, route }: Props) {
         tabBarActiveTintColor: '#72A8BC',
         tabBarInactiveTintColor: '#C8C8C8',
         tabBarIndicatorStyle: { backgroundColor: '#72A8BC' },
+        swipeEnabled: false,
       }}>
       <Tab.Screen
         name="Feed"
