@@ -6,7 +6,11 @@ import {
   watchDeleteColumn,
   watchUpdateColumn,
 } from '../columns/sagas';
-import { watchFetchPrayers } from '../prayers/sagas';
+import {
+  watchFetchPrayers,
+  watchAddPrayer,
+  watchDeletePrayer,
+} from '../prayers/sagas';
 
 export default function* rootSaga() {
   yield all([
@@ -17,5 +21,7 @@ export default function* rootSaga() {
     watchDeleteColumn(),
     watchUpdateColumn(),
     watchFetchPrayers(),
+    watchAddPrayer(),
+    watchDeletePrayer(),
   ]);
 }
