@@ -30,7 +30,7 @@ export function* postColumn({ values }: IPostColumnAction) {
     const request: { data: IColumn } = yield http.post('/columns/', values);
     yield put(actions.columns.addColumnSuccess(request.data));
   } catch (e) {
-    yield put(actions.columns.addColumnFailed);
+    yield put(actions.columns.addColumnFailed());
     console.log('error', e);
   }
 }
@@ -39,7 +39,7 @@ export function* deleteColumn({ columnId }: IDeleteColumnAction) {
     yield http.delete(`/columns/${columnId}`);
     yield put(actions.columns.deleteColumnSuccess(columnId));
   } catch (e) {
-    yield put(actions.columns.deleteColumnFailed);
+    yield put(actions.columns.deleteColumnFailed());
   }
 }
 export function* updateColumn({ data }: IUpdateColumnAction) {
@@ -52,7 +52,7 @@ export function* updateColumn({ data }: IUpdateColumnAction) {
 
     yield put(actions.columns.updateColumnSuccess(required.data));
   } catch (e) {
-    yield put(actions.columns.updateColumnFailed);
+    yield put(actions.columns.updateColumnFailed());
   }
 }
 export function* watchFetchColumns() {

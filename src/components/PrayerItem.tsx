@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import { Animated, Pressable, View, Text } from 'react-native';
+import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-
-import { IPrayer } from '../store/prayers/types';
 import PrayerIcon from '../ui/icons/PrayerIcon';
 import UserIcon from '../ui/icons/UserIcon';
 import LineIndicator from './LineIndicator';
 import CheckIcon from '../ui/icons/CheckIcon';
+import { IPrayerItem } from './PrayersList';
 
 interface IPrayerItemProps {
-  item: {
-    item: IPrayer;
-  };
+  item: IPrayerItem;
 }
 export default function PrayerItem({ item }: IPrayerItemProps) {
   const [dataItem, useDataItem] = useState(item.item);
@@ -94,17 +91,14 @@ const Link = styled.Pressable`
   justify-content: space-between;
   flex-grow: 1;
   height: 68px;
-  /* width: 100%; */
 `;
 const LinkWrap = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  /* width: 100%; */
   flex-grow: 1;
   height: 100%;
-  /* background-color: red; */
 `;
 const LinkTitle = styled.Text.attrs(props => ({
   numberOfLines: 1,

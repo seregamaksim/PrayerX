@@ -6,12 +6,18 @@ import styled from 'styled-components/native';
 import { actions, selectors } from '../store/ducks';
 import PlusIcon from '../ui/icons/PlusIcon';
 import PrayersList from '../components/PrayersList';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types';
+import { RouteProp } from '@react-navigation/native';
 
 interface INewPrayerValue {
   title: string;
 }
-
-export default function PrayersScreen({ route }: any) {
+type PrayersScreenRouteProp = RouteProp<RootStackParamList, 'Prayers'>;
+type Props = {
+  route: PrayersScreenRouteProp;
+};
+export default function PrayersScreen({ route }: Props) {
   const dispatch = useDispatch();
   const { columnId } = route.params;
 
@@ -49,7 +55,7 @@ export default function PrayersScreen({ route }: any) {
   );
 }
 
-const Container = styled.View`
+const Container = styled.ScrollView`
   height: 100%;
   display: flex;
   background-color: #fff;
@@ -61,7 +67,7 @@ const InpuView = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 15px;
+  padding: 0 15px;
   border: 1px solid #e5e5e5;
   border-radius: 10px;
   width: 100%;
@@ -75,4 +81,5 @@ const StyledInput = styled.TextInput`
   line-height: 20px;
   color: #9c9c9c;
   width: 100%;
+  padding: 15px 0;
 `;

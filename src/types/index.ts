@@ -5,4 +5,6 @@ export type RootStackParamList = {
   AddColumnModal: undefined;
   Column: { columnId: number };
   SettingsColumn: { columnId: number };
+  Prayers: { columnId: number };
+  ColumnSubscribed: { columnId: number };
 };

@@ -6,16 +6,17 @@ import {
   Dimensions,
   StyleSheet,
   FlatList,
+  Pressable,
+  ScrollView,
+  Button,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
 import { actions, selectors } from '../store/ducks';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import PrayerItem from '../components/PrayerItem';
+import { IPrayer } from '../store/prayers/types';
 
-interface INewPrayerValue {
-  title: string;
-}
 interface ISwipeData {
   direction: 'left' | 'right';
   isOpen: boolean;
@@ -26,8 +27,9 @@ interface ISwipeData {
 interface IPrayersListProps {
   columnId: number;
 }
-const rowTranslateAnimatedValues: any = {};
-
+export interface IPrayerItem {
+  item: IPrayer;
+}
 export default function PrayersList(props: IPrayersListProps) {
   const dispatch = useDispatch();
   const columnId = props.columnId;
@@ -35,35 +37,21 @@ export default function PrayersList(props: IPrayersListProps) {
   const dataPrayers = useSelector(
     selectors.prayers.selectPrayersByColumnId(columnId),
   );
-  const [listViewData, setListView] = useState(
-    dataPrayers.map(item => ({
-      ...item,
-      key: item.id.toString(),
-    })),
-  );
-  dataPrayers.map((item, i) => {
-    rowTranslateAnimatedValues[`${item.id}`] = new Animated.Value(1);
-  });
-  console.log('dataPrayers', dataPrayers);
+
   useEffect(() => {
     dispatch({ type: actions.prayers.getPrayers.type });
   }, [dispatch]);
 
   const onSwipeValueChange = (swipeData: ISwipeData) => {
     const { key, value } = swipeData;
-    console.log('swipeData', swipeData);
-
+    const transform = new Animated.Value(1);
     if (value < -Dimensions.get('window').width && !animationIsRunning) {
       setAnimationIsRunning(true);
-      Animated.timing(rowTranslateAnimatedValues[key], {
+      Animated.timing(transform, {
         toValue: 0,
         duration: 200,
         useNativeDriver: true,
       }).start(() => {
-        const newData = [...listViewData];
-        const prevIndex = listViewData.findIndex(item => item.key === key);
-        newData.splice(prevIndex, 1);
-        setListView(newData);
         setAnimationIsRunning(false);
         dispatch({
           type: actions.prayers.deletePrayer.type,
@@ -72,7 +60,7 @@ export default function PrayersList(props: IPrayersListProps) {
       });
     }
   };
-  const renderItem = (data: any) => <PrayerItem item={data} />;
+  const renderItem = (data: IPrayerItem) => <PrayerItem item={data} />;
 
   const renderHiddenItem = () => (
     <RowBack>
@@ -84,19 +72,35 @@ export default function PrayersList(props: IPrayersListProps) {
 
   return (
     // <FlatList data={dataPrayers} renderItem={renderItem} />
-    <SwipeListView
-      disableRightSwipe
-      data={listViewData}
-      renderItem={renderItem}
-      renderHiddenItem={renderHiddenItem}
-      rightOpenValue={-Dimensions.get('window').width}
-      previewRowKey={'0'}
-      previewOpenValue={-40}
-      previewOpenDelay={3000}
-      onSwipeValueChange={onSwipeValueChange}
-      useNativeDriver={false}
-      keyExtractor={item => item.id.toString()}
-    />
+    <>
+      <SwipeListView
+        disableRightSwipe
+        data={dataPrayers.filter(item => !item.checked)}
+        renderItem={renderItem}
+        renderHiddenItem={renderHiddenItem}
+        rightOpenValue={-Dimensions.get('window').width}
+        previewRowKey={'0'}
+        previewOpenValue={-40}
+        previewOpenDelay={3000}
+        onSwipeValueChange={onSwipeValueChange}
+        useNativeDriver={true}
+        keyExtractor={(item: IPrayer) => item.id.toString()}
+      />
+      <Button onPress={() => console.log('as')} title="click" />
+      <SwipeListView
+        disableRightSwipe
+        data={dataPrayers.filter(item => item.checked)}
+        renderItem={renderItem}
+        renderHiddenItem={renderHiddenItem}
+        rightOpenValue={-Dimensions.get('window').width}
+        previewRowKey={'0'}
+        previewOpenValue={-40}
+        previewOpenDelay={3000}
+        onSwipeValueChange={onSwipeValueChange}
+        useNativeDriver={true}
+        keyExtractor={(item: IPrayer) => item.id.toString()}
+      />
+    </>
   );
 }
 

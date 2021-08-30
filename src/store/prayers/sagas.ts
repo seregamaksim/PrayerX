@@ -17,7 +17,7 @@ export function* fetchPrayers() {
     const request: { data: IPrayer[] } = yield http.get('/prayers/');
     yield put(actions.prayers.getPrayersSuccess(request.data));
   } catch (e) {
-    yield put(actions.prayers.getPrayersFailed);
+    yield put(actions.prayers.getPrayersFailed());
     console.log('error', e);
   }
 }
@@ -31,7 +31,7 @@ export function* addPrayer({ data }: IAddPrayerAction) {
     );
     yield put(actions.prayers.addPrayerSuccess(request.data));
   } catch (e) {
-    yield put(actions.prayers.addPrayerFailed);
+    yield put(actions.prayers.addPrayerFailed());
     console.log('error', e);
   }
 }
@@ -40,7 +40,7 @@ export function* deletePrayer({ prayerId }: IDeletePrayerAction) {
     yield http.delete(`/prayers/${prayerId}`);
     yield put(actions.prayers.deletePrayerSuccess(prayerId));
   } catch (e) {
-    yield put(actions.prayers.deletePrayerFailed);
+    yield put(actions.prayers.deletePrayerFailed());
     console.log('error', e);
   }
 }

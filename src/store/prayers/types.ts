@@ -5,7 +5,7 @@ export interface IPrayer {
   description: string;
   checked: boolean;
   commentsIds: number[];
-  key?: number;
+  key?: string;
 }
 export interface InitialState {
   data: IPrayer[];

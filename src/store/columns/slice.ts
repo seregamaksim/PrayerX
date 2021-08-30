@@ -45,8 +45,6 @@ const columnsSlice = createSlice({
       state.fetchStatus = 'pending';
     },
     updateColumnSuccess(state, { payload }: PayloadAction<IColumn>) {
-      console.log('pay', payload);
-
       const index = state.data.findIndex(item => item.id === payload.id);
       if (index !== -1) {
         state.data[index].title = payload.title;

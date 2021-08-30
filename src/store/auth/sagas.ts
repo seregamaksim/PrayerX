@@ -25,7 +25,7 @@ export function* registrationSaga({ values }: IRegistrationAction) {
 
     yield put(actions.auth.signUpSuccess(request.data));
   } catch (e) {
-    yield put(actions.auth.signUpFailed);
+    yield put(actions.auth.signUpFailed());
   }
 }
 export function* loginSaga({ values }: ILoginAction) {
