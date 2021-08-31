@@ -7,11 +7,14 @@ import UserIcon from '../ui/icons/UserIcon';
 import LineIndicator from './LineIndicator';
 import CheckIcon from '../ui/icons/CheckIcon';
 import { IPrayerItem } from './PrayersList';
+import { useDispatch } from 'react-redux';
+import { actions } from '../store/ducks';
 
 interface IPrayerItemProps {
   item: IPrayerItem;
 }
 export default function PrayerItem({ item }: IPrayerItemProps) {
+  const dipsatch = useDispatch();
   const [dataItem, useDataItem] = useState(item.item);
   const [checked, useChecked] = useState(dataItem.checked);
 
@@ -36,6 +39,21 @@ export default function PrayerItem({ item }: IPrayerItemProps) {
             }}
             onPress={(isChecked?: boolean) => {
               useChecked(!checked);
+              console.log('data', {
+                title: dataItem.title,
+                description: dataItem.description,
+                checked: isChecked,
+              });
+
+              dipsatch({
+                type: actions.prayers.updatePrayer.type,
+                values: {
+                  id: dataItem.id,
+                  title: dataItem.title,
+                  description: dataItem.description,
+                  checked: isChecked,
+                },
+              });
             }}
           />
         </LineCheckboxWrap>
@@ -86,9 +104,6 @@ const LineCheckboxWrap = styled.View`
 `;
 
 const Link = styled.Pressable`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   flex-grow: 1;
   height: 68px;
 `;

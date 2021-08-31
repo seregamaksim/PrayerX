@@ -21,7 +21,6 @@ export default function ColumnsList() {
     return <ColumnItem data={item} />;
   };
   return (
-    // <Text>sa</Text>
     <StyledHomeView
       data={columns}
       renderItem={renderItem}

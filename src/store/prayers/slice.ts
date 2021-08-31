@@ -53,7 +53,7 @@ const prayersSlice = createSlice({
       }
       state.fetchStatus = 'fulfilled';
     },
-    updatePrayerRejected(state) {
+    updatePrayerFailed(state) {
       state.fetchStatus = 'rejected';
     },
   },

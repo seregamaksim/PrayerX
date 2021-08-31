@@ -17,7 +17,7 @@ export default function SubscribedScreen({ route }: Props) {
   const { columnId } = route.params;
   return (
     <Container>
-      <PrayersList columnId={columnId} />
+      <PrayersList columnId={columnId} withoutInput={true} />
     </Container>
   );
 }

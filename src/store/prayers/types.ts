@@ -11,6 +11,12 @@ export interface InitialState {
   data: IPrayer[];
   fetchStatus: string;
 }
+export interface IUpdatePrayer {
+  id: number;
+  title: string;
+  description: string;
+  checked: boolean;
+}
 
 export interface IAddPrayer {
   values: IPrayer;

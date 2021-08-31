@@ -10,6 +10,7 @@ import {
   watchFetchPrayers,
   watchAddPrayer,
   watchDeletePrayer,
+  watchUpdatePrayer,
 } from '../prayers/sagas';
 
 export default function* rootSaga() {
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     watchFetchPrayers(),
     watchAddPrayer(),
     watchDeletePrayer(),
+    watchUpdatePrayer(),
   ]);
 }

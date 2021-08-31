@@ -16,6 +16,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../types';
 import GearIcon from '../ui/icons/GearIcon';
+import SubscribedTabItem from '../components/SubscribedTabItem';
 
 type ColumnScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -30,36 +31,12 @@ type Props = {
 
 const Tab = createMaterialTopTabNavigator();
 
-const SubscribedTab = (props: { focused: boolean; color: string }) => {
-  console.log('props', props);
-
-  return;
-  // <TouchableOpacity
-  //         accessibilityRole="button"
-  //         accessibilityState={isFocused ? { selected: true } : {}}
-  //         accessibilityLabel={options.tabBarAccessibilityLabel}
-  //         testID={options.tabBarTestID}
-  //         onPress={onPress}
-  //         onLongPress={onLongPress}
-  //         style={{ flex: 1 }}
-  //       >
-  //         <Animated.Text style={{ opacity }}>
-  //           {label}
-  //         </Animated.Text>
-  //       </TouchableOpacity>
-  // <View
-  //   style={{
-  //     flex: 1,
-  //     flexDirection: 'row',
-  //     alignItems: 'center',
-  //   }}>
-  //   <Text> Subscribed 3</Text>
-  // </View>
-};
-
 export default function ColumnScreen({ navigation, route }: Props) {
   const { columnId } = route.params;
   const dataColumn = useSelector(selectors.columns.selectColumnById(columnId));
+  const prayers = useSelector(
+    selectors.prayers.selectPrayersByColumnId(columnId),
+  );
   function columnRightBtn() {
     return (
       <Pressable
@@ -96,7 +73,11 @@ export default function ColumnScreen({ navigation, route }: Props) {
         name="Notifications"
         component={SubscribedScreen}
         options={{
-          tabBarLabel: 'Subscribed',
+          tabBarLabel: ({ color }) => (
+            <SubscribedTabItem color={color} prayerLength={prayers.length} />
+          ),
+          tabBarStyle: { position: 'relative' },
+          tabBarLabelStyle: { position: 'relative' },
         }}
         initialParams={{ columnId: columnId }}
       />
