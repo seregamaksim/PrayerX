@@ -89,3 +89,5 @@ const SectionTitle = styled.Text`
   margin-bottom: 15px;
   color: #72a8bc;
 `;
+
+const MembersList = styled.View``;
