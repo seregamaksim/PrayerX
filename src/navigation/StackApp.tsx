@@ -10,10 +10,14 @@ import { Button, Image, Pressable } from 'react-native';
 import AddColumnScreen from '../screens/AddColumnScreen';
 import ColumnScreen from '../screens/ColumnScreen';
 import ColumnSettingsScreen from '../screens/ColumnSettingsScreen';
+import PrayerDetailScreen from '../screens/PrayerDetailScreen';
+import PlusIcon from '../ui/icons/PlusIcon';
+import UserIcon from '../ui/icons/UserIcon';
+import ArrowBackIcon from '../ui/icons/ArrowBackIcon';
 
 const Stack = createNativeStackNavigator();
 
-const StackApp = () => {
+function StackApp() {
   const isToken = useSelector(selectors.auth.selectToken);
   return (
     <NavigationContainer>
@@ -37,6 +41,15 @@ const StackApp = () => {
                 name="Column"
                 component={ColumnScreen}
                 options={{ title: 'My Columns', headerShadowVisible: false }}
+              />
+              <Stack.Screen
+                name="PrayersDetail"
+                component={PrayerDetailScreen}
+                options={{
+                  title: '',
+                  headerStyle: { backgroundColor: '#BFB393' },
+                  headerShadowVisible: false,
+                }}
               />
             </Stack.Group>
             <Stack.Group>
@@ -65,6 +78,6 @@ const StackApp = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
 
 export default StackApp;

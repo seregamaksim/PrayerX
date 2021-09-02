@@ -76,7 +76,7 @@ export default function PrayersList(props: IPrayersListProps) {
         props.withoutInput ? null : <AddPrayerInput columnId={columnId} />
       }
       ListFooterComponent={
-        dataPrayers.length > 0 ? (
+        dataPrayers.filter(item => item.checked).length > 0 ? (
           <ShowAnsweredPrayers
             dataPrayers={dataPrayers}
             onSwipeValueChange={onSwipeValueChange}

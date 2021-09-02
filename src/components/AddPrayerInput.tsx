@@ -19,7 +19,10 @@ export default function AddPrayerInput({ columnId }: IAddPrayerInputProps) {
   function onSubmit(values: INewPrayerValue) {
     console.log('values', values);
 
-    const data = { columnId: columnId, values: { description: '', ...values } };
+    const data = {
+      columnId: columnId,
+      values: { description: 'descr', ...values },
+    };
     dispatch({ type: actions.prayers.addPrayer.type, data: data });
   }
 

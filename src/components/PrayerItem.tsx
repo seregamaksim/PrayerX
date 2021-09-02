@@ -9,12 +9,17 @@ import CheckIcon from '../ui/icons/CheckIcon';
 import { IPrayerItem } from './PrayersList';
 import { useDispatch } from 'react-redux';
 import { actions } from '../store/ducks';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types';
 
 interface IPrayerItemProps {
   item: IPrayerItem;
 }
+type PrayersScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 export default function PrayerItem({ item }: IPrayerItemProps) {
   const dipsatch = useDispatch();
+  const navigation = useNavigation<PrayersScreenNavigationProp>();
   const [dataItem, useDataItem] = useState(item.item);
   const [checked, useChecked] = useState(dataItem.checked);
 
@@ -58,7 +63,9 @@ export default function PrayerItem({ item }: IPrayerItemProps) {
           />
         </LineCheckboxWrap>
         <Link
-          onPress={() => console.log('You touched me')}
+          onPress={() =>
+            navigation.navigate('PrayersDetail', { prayerId: dataItem.id })
+          }
           style={{
             alignItems: 'center',
             justifyContent: 'center',

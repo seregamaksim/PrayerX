@@ -3,8 +3,10 @@ import styled from 'styled-components/native';
 import PrayersList from '../components/PrayersList';
 import { RootStackParamList } from '../types';
 import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type PrayersScreenRouteProp = RouteProp<RootStackParamList, 'Prayers'>;
+
 type Props = {
   route: PrayersScreenRouteProp;
 };

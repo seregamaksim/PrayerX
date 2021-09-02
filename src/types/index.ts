@@ -1,5 +1,3 @@
-import { StackNavigationProp } from '@react-navigation/stack';
-
 export type RootStackParamList = {
   Home: undefined;
   AddColumnModal: undefined;
@@ -7,4 +5,5 @@ export type RootStackParamList = {
   SettingsColumn: { columnId: number };
   Prayers: { columnId: number };
   ColumnSubscribed: { columnId: number };
+  PrayersDetail: { prayerId: number };
 };
