@@ -1,13 +1,15 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import styled from 'styled-components/native';
+import { StyleSheetProperties, Text, View } from 'react-native';
+import { Styles } from 'react-native-svg';
+import styled, { DefaultTheme } from 'styled-components/native';
 
 interface IAvatarProps {
   width: number;
+  style?: DefaultTheme;
 }
 
-export default function Avatar({ width }: IAvatarProps) {
-  return <AvatarWrap width={width}></AvatarWrap>;
+export default function Avatar({ width, style }: IAvatarProps) {
+  return <AvatarWrap style={style} width={width}></AvatarWrap>;
 }
 
 const AvatarWrap = styled.View<{ width: number }>`

@@ -29,6 +29,7 @@ type Props = {
 export default function PrayerDetailScreen({ navigation, route }: Props) {
   const { prayerId } = route.params;
   const data = useSelector(selectors.prayers.seletPrayerById(prayerId));
+  console.log('data', data);
 
   function lefttBtn() {
     return (
@@ -59,7 +60,7 @@ export default function PrayerDetailScreen({ navigation, route }: Props) {
           <MembersList />
         </MembersWrap>
         <CommentsWrap>
-          <SectionTitle>Comments</SectionTitle>
+          <SectionTitle style={{ paddingLeft: 15 }}>Comments</SectionTitle>
           <CommentsList />
         </CommentsWrap>
       </Container>
@@ -107,7 +108,4 @@ const MembersWrap = styled.View`
   margin-top: 20px;
 `;
 
-const CommentsWrap = styled.View`
-  padding-left: 15px;
-  padding-right: 15px;
-`;
+const CommentsWrap = styled.View``;

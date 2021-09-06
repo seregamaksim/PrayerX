@@ -17,5 +17,5 @@ const List = styled.View`
   flex-direction: row;
 `;
 const AvatarItem = styled(Avatar)`
-  margin: 0 8px 0 0;
+  margin-right: 8px;
 `;
