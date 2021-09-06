@@ -10,6 +10,8 @@ import ArrowBackIcon from '../ui/icons/ArrowBackIcon';
 import PrayerIcon from '../ui/icons/PrayerIcon';
 import LineIndicator from '../components/LineIndicator';
 import CounterPrayer from '../components/CounterPrayer';
+import CommentsList from '../components/CommentsList';
+import MembersList from '../components/MembersList';
 
 type PrayerDetailScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -42,16 +44,26 @@ export default function PrayerDetailScreen({ navigation, route }: Props) {
     });
   }, [navigation]);
   return (
-    <Container>
+    <>
       <TitleWrap>
         <Title>{data.title}</Title>
       </TitleWrap>
-      <LastPrayedWrap>
-        <LineIndicator />
-        <LastPrayedText>Last prayed 8 min ago</LastPrayedText>
-      </LastPrayedWrap>
-      <StyledCounterPrayer prayerId={data.id} />
-    </Container>
+      <Container>
+        <LastPrayedWrap>
+          <LineIndicator />
+          <LastPrayedText>Last prayed 8 min ago</LastPrayedText>
+        </LastPrayedWrap>
+        <StyledCounterPrayer prayerId={data.id} />
+        <MembersWrap>
+          <SectionTitle>Members</SectionTitle>
+          <MembersList />
+        </MembersWrap>
+        <CommentsWrap>
+          <SectionTitle>Comments</SectionTitle>
+          <CommentsList />
+        </CommentsWrap>
+      </Container>
+    </>
   );
 }
 const Container = styled.ScrollView``;
@@ -77,9 +89,7 @@ const LastPrayedText = styled.Text`
   color: #514d47;
   margin-left: 10px;
 `;
-const StyledCounterPrayer = styled(CounterPrayer)`
-  margin-bottom: 20px;
-`;
+const StyledCounterPrayer = styled(CounterPrayer)``;
 const SectionTitle = styled.Text`
   font-size: 13px;
   line-height: 15px;
@@ -90,4 +100,14 @@ const SectionTitle = styled.Text`
   color: #72a8bc;
 `;
 
-const MembersList = styled.View``;
+const MembersWrap = styled.View`
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+`;
+
+const CommentsWrap = styled.View`
+  padding-left: 15px;
+  padding-right: 15px;
+`;
