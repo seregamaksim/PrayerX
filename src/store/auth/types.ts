@@ -1,3 +1,5 @@
+import { IColumn } from '../columns/types';
+
 export interface IAuthSlice {
   token: string;
   name: string;
@@ -20,4 +22,5 @@ export interface IRegistrationResponse extends IAuth {
   id: number;
   token: string;
   password: string;
+  columns: IColumn[];
 }

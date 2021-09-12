@@ -21,7 +21,7 @@ export function* fetchColumns() {
     const request: { data: IColumn[] } = yield http.get('/columns/');
     yield put(actions.columns.getColumnsSuccess(request.data));
   } catch (e) {
-    yield put(actions.columns.getColumnsFailed);
+    yield put(actions.columns.getColumnsFailed());
     console.log('error', e);
   }
 }

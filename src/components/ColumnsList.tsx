@@ -1,6 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
 import { actions, selectors } from '../store/ducks';
@@ -10,8 +9,6 @@ import ColumnItem from './ColumnItem';
 export default function ColumnsList() {
   const dispatch = useDispatch();
   const columns = useSelector(selectors.columns.selectColumns);
-  const navigation = useNavigation();
-  console.log('columns', columns);
 
   useEffect(() => {
     dispatch({ type: actions.columns.getColumns.type });

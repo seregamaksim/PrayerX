@@ -1,25 +1,42 @@
-import React from 'react';
+import moment from 'moment';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { DefaultTheme } from 'styled-components/native';
+import { IComment } from '../store/comments/types';
+import { actions, selectors } from '../store/ducks';
+import TrashIcon from '../ui/icons/TrashIcon';
 import Avatar from './Avatar';
 
-interface IComment {
+interface ICommentProps {
+  data: IComment;
   style?: DefaultTheme;
 }
 
-export default function Comment() {
+export default function Comment(props: ICommentProps) {
+  const dispatch = useDispatch();
+  const [dataComment, setDataComment] = useState(props.data);
+  const nameUser = useSelector(selectors.auth.getName);
+  const dateCreated = moment(dataComment.created, 'YYYYMMDD').fromNow();
+
+  function deleteComment() {
+    dispatch({
+      type: actions.comments.deleteComment.type,
+      commentId: dataComment.id,
+    });
+  }
   return (
     <CommentWrap>
-      <StyledAvatar width={42} />
+      <StyledAvatar width={42} name={nameUser} />
       <CommentInfoWrap>
         <CommentInfoTop>
-          <CommentAuthor>Anna Barber</CommentAuthor>
-          <CommentTime>2 days ago</CommentTime>
+          <CommentAuthor>{nameUser}</CommentAuthor>
+          <CommentTime>{dateCreated}</CommentTime>
         </CommentInfoTop>
-        <CommentBody>
-          How you doing? How you doing? How you doing? How you doing? How you
-          doing?
-        </CommentBody>
+        <CommentBody>{dataComment.body}</CommentBody>
       </CommentInfoWrap>
+      <CommentDeleteBtn onPress={deleteComment}>
+        <TrashIcon width={20} height={20} />
+      </CommentDeleteBtn>
     </CommentWrap>
   );
 }
@@ -32,12 +49,17 @@ const CommentWrap = styled.View`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+
+  position: relative;
 `;
 const StyledAvatar = styled(Avatar)`
   margin-right: 12px;
 `;
 
-const CommentInfoWrap = styled.View``;
+const CommentInfoWrap = styled.View`
+  display: flex;
+  flex-grow: 1;
+`;
 const CommentInfoTop = styled.View`
   display: flex;
   flex-direction: row;
@@ -59,5 +81,11 @@ const CommentBody = styled.Text`
   font-size: 17px;
   line-height: 20px;
   color: #514d47;
-  max-width: 90%;
+`;
+const CommentDeleteBtn = styled.Pressable`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
 `;

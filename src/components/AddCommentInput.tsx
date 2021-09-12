@@ -4,37 +4,35 @@ import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { actions } from '../store/ducks';
-import PlusIcon from '../ui/icons/PlusIcon';
+import CommentIcon from '../ui/icons/CommentIcon';
 
-interface IAddPrayerInputProps {
-  columnId: number;
+interface IAddCommentInputProps {
+  prayerId: number;
 }
-interface INewPrayerValue {
-  title: string;
+interface INewCommentValue {
+  body: string;
 }
 
-export default function AddPrayerInput({ columnId }: IAddPrayerInputProps) {
+export default function AddCommentInput({ prayerId }: IAddCommentInputProps) {
   const dispatch = useDispatch();
 
-  function onSubmit(values: INewPrayerValue) {
-    console.log('values', values);
-
+  function onSubmit(values: INewCommentValue) {
     const data = {
-      columnId: columnId,
-      values: { description: 'descr', ...values },
+      prayerId: prayerId,
+      values: { ...values },
     };
-    dispatch({ type: actions.prayers.addPrayer.type, data: data });
+    dispatch({ type: actions.comments.addComment.type, data: data });
   }
 
   return (
     <InputWrap>
-      <InpuView>
-        <PlusIcon width={22} height={22} style={{ marginRight: 15 }} />
+      <InputView>
+        <CommentIcon width={22} height={22} style={{ marginRight: 15 }} />
         <Form
           onSubmit={onSubmit}
           render={({ handleSubmit, values, form }: any) => (
             <View style={{ flexGrow: 1 }}>
-              <Field name="title" placeholder="Add a prayer...">
+              <Field name="body" placeholder="Add a comment...">
                 {({ input, placeholder }) => {
                   return (
                     <StyledInput
@@ -51,20 +49,19 @@ export default function AddPrayerInput({ columnId }: IAddPrayerInputProps) {
               </Field>
             </View>
           )}></Form>
-      </InpuView>
+      </InputView>
     </InputWrap>
   );
 }
 
-const InputWrap = styled.View`
-  padding: 15px;
-`;
-const InpuView = styled.View`
+const InputWrap = styled.View``;
+const InputView = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0 15px;
   border: 1px solid #e5e5e5;
+  border-top-width: 0;
   border-radius: 10px;
   width: 100%;
   flex-grow: 1;

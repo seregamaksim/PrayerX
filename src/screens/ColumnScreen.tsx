@@ -1,12 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  TouchableOpacity,
-  Pressable,
-  Image,
-} from 'react-native';
+import { Pressable } from 'react-native';
 import { useSelector } from 'react-redux';
 import { selectors } from '../store/ducks';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';

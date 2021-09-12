@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { IPrayer } from '../store/prayers/types';
 import ShowMoreBtn from './ShowMoreBtn';
-import { Animated, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { IPrayerItem, ISwipeData } from './PrayersList';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectors } from '../store/ducks';
 
 interface IShowAnsweredPrayersProps {
   renderItem: (data: IPrayerItem) => JSX.Element;

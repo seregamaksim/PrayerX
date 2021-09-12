@@ -43,7 +43,7 @@ export function* deletePrayer({ prayerId }: IDeletePrayerAction) {
   try {
     yield http.delete(`/prayers/${prayerId}`);
     yield put(actions.prayers.deletePrayerSuccess(prayerId));
-  } catch (e) {
+  } catch (e: any) {
     yield put(actions.prayers.deletePrayerFailed());
     if (e.statusCode === 500) {
       yield put(actions.prayers.deletePrayerSuccess(prayerId));

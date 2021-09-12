@@ -2,7 +2,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { Form } from 'react-final-form';
 import { Button, View } from 'react-native';
-import { Text } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { actions } from '../store/ducks';
@@ -39,10 +38,6 @@ export default function AddColumnScreen({ navigation }: Props) {
             <FormSendBtn handleSubmit={handleSubmit} text="Add column" />
           </View>
         )}></Form>
-      <Button
-        onPress={() => dispatch({ type: actions.auth.signOut })}
-        title="Close"
-      />
     </Container>
   );
 }
