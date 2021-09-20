@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
-import LoginForm from '../components/LoginForm';
-import RegistrationForm from '../components/RegistrationForm';
+import LoginForm from '../../../../components/LoginForm';
+import RegistrationForm from '../../../../components/RegistrationForm';
 
 export default function AuthScreen() {
   const [isRegistation, setIsRegistration] = useState(false);

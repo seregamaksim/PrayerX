@@ -23,6 +23,7 @@ export default function LoginForm() {
           <FormInput name="password" placeholder="Password" />
           <FormSendBtn handleSubmit={handleSubmit} text="Login" />
         </View>
-      )}></Form>
+      )}
+    />
   );
 }

@@ -12,6 +12,7 @@ import { actions } from '../store/ducks';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
+import { UserRoutes } from '../navigation/UserNavigator/routes';
 
 interface IPrayerItemProps {
   item: IPrayerItem;
@@ -64,7 +65,9 @@ export default function PrayerItem({ item }: IPrayerItemProps) {
         </LineCheckboxWrap>
         <Link
           onPress={() =>
-            navigation.navigate('PrayersDetail', { prayerId: dataItem.id })
+            navigation.navigate(UserRoutes.PrayerDetailScreen, {
+              prayerId: dataItem.id,
+            })
           }
           style={{
             alignItems: 'center',

@@ -5,6 +5,7 @@ import { Pressable, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { RootStackParamList } from '../types';
 import { IColumn } from '../store/columns/types';
+import { UserRoutes } from '../navigation/UserNavigator/routes';
 
 type ColumnScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -16,7 +17,9 @@ export default function ColumnItem({ data }: { data: IColumn }) {
   return (
     <Item>
       <StyledLink
-        onPress={() => navigation.navigate('Column', { columnId: data.id })}>
+        onPress={() =>
+          navigation.navigate(UserRoutes.ColumnScreen, { columnId: data.id })
+        }>
         <LinkText>{data.title}</LinkText>
       </StyledLink>
     </Item>

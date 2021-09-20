@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import PrayersList from '../components/PrayersList';
-import { RootStackParamList } from '../types';
+import PrayersList from '../../../../components/PrayersList';
+import { RootStackParamList } from '../../../../types';
 import { RouteProp } from '@react-navigation/native';
 
 type PrayersScreenRouteProp = RouteProp<RootStackParamList, 'Prayers'>;
