@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import styled from 'styled-components/native';
 
 interface ISubscribedTabItemProps {
   color: string;
@@ -11,42 +11,39 @@ export default function SubscribedTabItem({
   prayerLength,
 }: ISubscribedTabItemProps) {
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
-        borderRadius: 50,
-      }}>
-      <Text
-        style={{
-          color: color,
-          fontSize: 13,
-          fontWeight: '600',
-          textTransform: 'uppercase',
-        }}>
-        Subscribed
-      </Text>
-      <View
-        style={{
-          marginLeft: 4,
-          backgroundColor: '#AC5253',
-          width: 16,
-          height: 16,
-          borderRadius: 50,
-        }}>
-        <Text
-          style={{
-            textAlign: 'center',
-            fontSize: 9,
-            lineHeight: 16,
-            color: '#fff',
-          }}>
-          {prayerLength}
-        </Text>
-      </View>
-    </View>
+    <TabWrapper>
+      <TabText color={color}>Subscribed</TabText>
+      <TabCircleWrap>
+        <TabCircleText>{prayerLength}</TabCircleText>
+      </TabCircleWrap>
+    </TabWrapper>
   );
 }
+
+const TabWrapper = styled.View`
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  border-radius: 50px;
+`;
+const TabText = styled.Text<{ color: string }>`
+  color: ${props => props.color};
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+`;
+const TabCircleWrap = styled.View`
+  margin-left: 4px;
+  background-color: #ac5253;
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
+`;
+const TabCircleText = styled.Text`
+  font-size: 9px;
+  line-height: 16px;
+  text-align: center;
+  color: #fff;
+`;

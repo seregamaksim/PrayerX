@@ -27,11 +27,11 @@ export default function AddCommentInput({ prayerId }: IAddCommentInputProps) {
   return (
     <InputWrap>
       <InputView>
-        <CommentIcon width={22} height={22} style={{ marginRight: 15 }} />
+        <StyledCommentIcon />
         <Form
           onSubmit={onSubmit}
           render={({ handleSubmit, values, form }: any) => (
-            <View style={{ flexGrow: 1 }}>
+            <FieldWrap>
               <Field name="body" placeholder="Add a comment...">
                 {({ input, placeholder }) => {
                   return (
@@ -47,7 +47,7 @@ export default function AddCommentInput({ prayerId }: IAddCommentInputProps) {
                   );
                 }}
               </Field>
-            </View>
+            </FieldWrap>
           )}
         />
       </InputView>
@@ -76,4 +76,13 @@ const StyledInput = styled.TextInput`
   color: #9c9c9c;
   width: 100%;
   padding: 15px 0;
+`;
+const StyledCommentIcon = styled(CommentIcon).attrs(() => ({
+  width: '22',
+  height: '22',
+}))`
+  margin-right: 15px;
+`;
+const FieldWrap = styled.View`
+  flex-grow: 1;
 `;

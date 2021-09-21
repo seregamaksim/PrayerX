@@ -76,7 +76,7 @@ export default function PrayerDetailScreen({ navigation, route }: Props) {
         }
         ListFooterComponent={
           <CommentsWrap>
-            <SectionTitle style={{ paddingLeft: 15 }}>Comments</SectionTitle>
+            <SectionTitleWithPaddingLeft>Comments</SectionTitleWithPaddingLeft>
             <CommentsList prayerId={prayerId} />
             <AddCommentInput prayerId={prayerId} />
           </CommentsWrap>
@@ -140,7 +140,9 @@ const SectionTitle = styled.Text`
   margin-bottom: 15px;
   color: #72a8bc;
 `;
-
+const SectionTitleWithPaddingLeft = styled(SectionTitle)`
+  padding-left: 15px;
+`;
 const MembersWrap = styled.View`
   padding-left: 15px;
   padding-right: 15px;

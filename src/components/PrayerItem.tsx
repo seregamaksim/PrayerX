@@ -29,7 +29,7 @@ export default function PrayerItem({ item }: IPrayerItemProps) {
       <Row>
         <LineCheckboxWrap>
           <LineIndicator />
-          <BouncyCheckbox
+          <StyledBouncyChecbox
             size={22}
             fillColor="#fffff"
             unfillColor="#FFFFFF"
@@ -39,9 +39,6 @@ export default function PrayerItem({ item }: IPrayerItemProps) {
             iconStyle={{
               borderColor: '#514D47',
               borderRadius: 4,
-            }}
-            style={{
-              marginLeft: 15,
             }}
             onPress={(isChecked?: boolean) => {
               useChecked(!checked);
@@ -68,12 +65,7 @@ export default function PrayerItem({ item }: IPrayerItemProps) {
             navigation.navigate(UserRoutes.PrayerDetailScreen, {
               prayerId: dataItem.id,
             })
-          }
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: 68,
-          }}>
+          }>
           <LinkWrap>
             <LinkTitle checked={checked}>{dataItem.title}</LinkTitle>
             <LinkIconsList>
@@ -110,12 +102,13 @@ const LineCheckboxWrap = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-right: 15px;
 `;
 
 const Link = styled.Pressable`
   flex-grow: 1;
   height: 68px;
+  align-items: center;
+  justify-content: center;
 `;
 const LinkWrap = styled.View`
   display: flex;
@@ -125,7 +118,7 @@ const LinkWrap = styled.View`
   flex-grow: 1;
   height: 100%;
 `;
-const LinkTitle = styled.Text.attrs(props => ({
+const LinkTitle = styled.Text.attrs(() => ({
   numberOfLines: 1,
 }))<{ checked: boolean }>`
   font-size: 17px;
@@ -155,4 +148,7 @@ const LinkIconText = styled.Text`
   color: #514d47;
 
   margin-left: 5px;
+`;
+const StyledBouncyChecbox = styled(BouncyCheckbox)`
+  margin-left: 15px;
 `;

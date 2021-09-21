@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
+import { DefaultTheme } from 'styled-components/native';
 
 interface PlusIconProps extends SvgProps {
+  style?: DefaultTheme;
   fillPath?: string;
 }
 function PlusIcon(props: PlusIconProps) {

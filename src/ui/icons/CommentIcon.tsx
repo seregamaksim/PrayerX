@@ -1,7 +1,12 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
+import { DefaultTheme } from 'styled-components/native';
 
-function CommentIcon(props: SvgProps) {
+interface ICommentIconProps extends SvgProps {
+  style?: DefaultTheme;
+}
+
+function CommentIcon(props: ICommentIconProps) {
   return (
     <Svg width={20} height={20} fill="none" {...props}>
       <Path

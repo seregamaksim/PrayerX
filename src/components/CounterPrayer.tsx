@@ -8,19 +8,19 @@ interface ICounterPrayerProps {
 export default function CounterPrayer(props: ICounterPrayerProps) {
   return (
     <CounterList>
-      <CounterItem style={{ borderLeftWidth: 0 }}>
+      <CounterItemWithouBorderLeft>
         <CounterItemTitleMini>July 25 2017</CounterItemTitleMini>
         <CounterItemText>Date Added</CounterItemText>
         <CounterItemTextBlue>Opened for 4 days</CounterItemTextBlue>
-      </CounterItem>
+      </CounterItemWithouBorderLeft>
       <CounterItem>
         <CounterItemTitle>123</CounterItemTitle>
         <CounterItemText>Times Prayed Total</CounterItemText>
       </CounterItem>
-      <CounterItem style={{ borderLeftWidth: 0 }}>
+      <CounterItemWithouBorderLeft>
         <CounterItemTitle>63</CounterItemTitle>
         <CounterItemText>Times Prayed by Me</CounterItemText>
-      </CounterItem>
+      </CounterItemWithouBorderLeft>
       <CounterItem>
         <CounterItemTitle>60</CounterItemTitle>
         <CounterItemText>Times Prayed by Others</CounterItemText>
@@ -50,6 +50,9 @@ const CounterItem = styled.View`
   border-left-width: 1px;
   border-style: solid;
   border-color: #e5e5e5;
+`;
+const CounterItemWithouBorderLeft = styled(CounterItem)`
+  border-left-width: 0;
 `;
 
 const CounterItemTitle = styled.Text`

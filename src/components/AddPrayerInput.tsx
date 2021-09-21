@@ -29,11 +29,11 @@ export default function AddPrayerInput({ columnId }: IAddPrayerInputProps) {
   return (
     <InputWrap>
       <InpuView>
-        <PlusIcon width={22} height={22} style={{ marginRight: 15 }} />
+        <StyledCommentIcon />
         <Form
           onSubmit={onSubmit}
           render={({ handleSubmit, values, form }: any) => (
-            <View style={{ flexGrow: 1 }}>
+            <FieldWrap>
               <Field name="title" placeholder="Add a prayer...">
                 {({ input, placeholder }) => {
                   return (
@@ -49,7 +49,7 @@ export default function AddPrayerInput({ columnId }: IAddPrayerInputProps) {
                   );
                 }}
               </Field>
-            </View>
+            </FieldWrap>
           )}
         />
       </InpuView>
@@ -79,4 +79,13 @@ const StyledInput = styled.TextInput`
   color: #9c9c9c;
   width: 100%;
   padding: 15px 0;
+`;
+const StyledCommentIcon = styled(PlusIcon).attrs(() => ({
+  width: '22',
+  height: '22',
+}))`
+  margin-right: 15px;
+`;
+const FieldWrap = styled.View`
+  flex-grow: 1;
 `;
