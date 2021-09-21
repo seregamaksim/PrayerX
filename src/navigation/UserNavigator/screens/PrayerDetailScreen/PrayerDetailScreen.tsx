@@ -1,19 +1,19 @@
 import { RouteProp } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useEffect, useLayoutEffect } from 'react';
-import { Pressable, Text, FlatList } from 'react-native';
+import React, { useEffect } from 'react';
+import { Platform } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
-import { actions, selectors } from '../store/ducks';
-import { RootStackParamList } from '../types';
-import ArrowBackIcon from '../ui/icons/ArrowBackIcon';
-import PrayerIcon from '../ui/icons/PrayerIcon';
-import LineIndicator from '../components/LineIndicator';
-import CounterPrayer from '../components/CounterPrayer';
-import CommentsList from '../components/CommentsList';
-import MembersList from '../components/MembersList';
-import PlusIcon from '../ui/icons/PlusIcon';
-import AddCommentInput from '../components/AddCommentInput';
+import { actions, selectors } from '../../../../store/ducks';
+import { RootStackParamList } from '../../../../types';
+import ArrowBackIcon from '../../../../ui/icons/ArrowBackIcon';
+import PrayerIcon from '../../../../ui/icons/PrayerIcon';
+import LineIndicator from '../../../../components/LineIndicator';
+import CounterPrayer from '../../../../components/CounterPrayer';
+import CommentsList from '../../../../components/CommentsList';
+import MembersList from '../../../../components/MembersList';
+import PlusIcon from '../../../../ui/icons/PlusIcon';
+import AddCommentInput from '../../../../components/AddCommentInput';
 
 type PrayerDetailScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -37,24 +37,21 @@ export default function PrayerDetailScreen({ navigation, route }: Props) {
     dispatch({ type: actions.comments.getComments.type });
   }, [dispatch]);
 
-  function lefttBtn() {
-    return (
-      <Pressable onPress={() => navigation.goBack()}>
-        <ArrowBackIcon />
-      </Pressable>
-    );
-  }
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: lefttBtn,
-      headerRight: () => <PrayerIcon fillPath="#fff" />,
-    });
-  }, [navigation]);
   return (
-    <>
-      <TitleWrap>
-        <Title>{data.title}</Title>
-      </TitleWrap>
+    <Root>
+      <Header>
+        <HeaderTop>
+          <HeaderBackBtn onPress={() => navigation.goBack()}>
+            <ArrowBackIcon />
+          </HeaderBackBtn>
+          <HeaderPrayerBtn>
+            <PrayerIcon fillPath="#fff" />
+          </HeaderPrayerBtn>
+        </HeaderTop>
+        <TitleWrap>
+          <Title>{data.title}</Title>
+        </TitleWrap>
+      </Header>
       <Container
         data={null}
         renderItem={info => null}
@@ -85,18 +82,38 @@ export default function PrayerDetailScreen({ navigation, route }: Props) {
           </CommentsWrap>
         }
       />
-    </>
+    </Root>
   );
 }
+const Root = styled.View`
+  display: flex;
+  height: 100%;
+  background-color: #fff;
+`;
+
 const Container = styled.FlatList`
   display: flex;
+  background-color: #fff;
 `;
-const TitleWrap = styled.View`
+const Header = styled.View`
+  padding: 24px 15px;
+  padding-top: ${Platform.OS === 'ios' ? '74px' : '20px'};
+  position: relative;
+  min-height: 130px;
+  display: flex;
   background-color: #bfb393;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 23px;
 `;
+const HeaderTop = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+`;
+const HeaderBackBtn = styled.Pressable``;
+const HeaderPrayerBtn = styled.Pressable``;
+
+const TitleWrap = styled.View``;
 const Title = styled.Text`
   font-size: 17px;
   line-height: 27px;

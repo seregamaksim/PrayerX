@@ -50,7 +50,8 @@ export default function AddPrayerInput({ columnId }: IAddPrayerInputProps) {
                 }}
               </Field>
             </View>
-          )}></Form>
+          )}
+        />
       </InpuView>
     </InputWrap>
   );

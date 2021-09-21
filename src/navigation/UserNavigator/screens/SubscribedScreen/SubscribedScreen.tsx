@@ -2,8 +2,8 @@ import { RouteProp } from '@react-navigation/native';
 import React from 'react';
 import { View, Text } from 'react-native';
 import styled from 'styled-components/native';
-import PrayersList from '../components/PrayersList';
-import { RootStackParamList } from '../types';
+import PrayersList from '../../../../components/PrayersList';
+import { RootStackParamList } from '../../../../types';
 
 type SubscribedScreenRouteProp = RouteProp<
   RootStackParamList,

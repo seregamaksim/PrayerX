@@ -48,7 +48,8 @@ export default function AddCommentInput({ prayerId }: IAddCommentInputProps) {
                 }}
               </Field>
             </View>
-          )}></Form>
+          )}
+        />
       </InputView>
     </InputWrap>
   );

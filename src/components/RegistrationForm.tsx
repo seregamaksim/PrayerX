@@ -29,6 +29,7 @@ export default function RegistrationForm() {
           <FormInput name="password" placeholder="Password" />
           <FormSendBtn handleSubmit={handleSubmit} text="Registration" />
         </View>
-      )}></Form>
+      )}
+    />
   );
 }
